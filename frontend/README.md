@@ -1,1 +1,0 @@
-Place your company logo at public/logo.png (use the file you uploaded). Then run `npm install` and `npm start`.
