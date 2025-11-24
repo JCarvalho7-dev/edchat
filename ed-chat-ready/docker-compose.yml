@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: edchat
+      POSTGRES_PASSWORD: edchatpass
+      POSTGRES_DB: edchatdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgres://edchat:edchatpass@db:5432/edchatdb
+      JWT_SECRET: verysecret_edchat_jwt
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+volumes:
+  db-data:
